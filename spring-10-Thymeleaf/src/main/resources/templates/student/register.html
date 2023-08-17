@@ -30,10 +30,45 @@
 </h2>
 
 <h2>
-    <a th:href = "@{/student/welcome(name = ${students.get(0).getFirstName()})}">Show The Student Name That I Sent</a>
+    <a th:href = "@{/student/welcome(name = ${students.get(0).firstName})}">Show The Student Name That I Sent</a>
 </h2>
 
+<!--Iteration-->
 
+<ul>
+<!--             it takes each student(element) and put it to model-->
+    <h2> Printing students firstname </h2>
+    <li th:each="student : ${students}" th:text="${student.firstName}"></li>
+</ul>
+
+<ul>
+    <!--   in thymeleaf instead od getFirsName() we can use firstName directly-->
+    <h2> Printing students lastname </h2>
+    <li th:each="student : ${students}" th:text="${student.lastName}"></li>
+</ul>
+
+<h2> Printing Students in table</h2>
+<table>
+    <thead>
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td>State</td>
+        </tr>
+    </thead>
+
+<tbody>
+  <tr th:each="s :${students}">
+
+        <td th:text="${s.firstName}"></td>
+        <td th:text="${s.lastName}"></td>
+        <td th:text="${s.age}"></td>
+        <td th:text="${s.state}"></td>
+    </tr>
+</tbody>
+
+</table>
 
 </body>
 </html>

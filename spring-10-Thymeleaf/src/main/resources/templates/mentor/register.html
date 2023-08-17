@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cydeo</title>
+</head>
+<body>
+
+<!-- Display value of model -->
+<h2 th:text="${mentors.get(0).firstName}"></h2>
+<h2 th:text="${mentors.get(0).getLastName()}"></h2>
+
+<!-- Concatenation -->
+<h2 th:text="${'hello ' + mentors.get(0).getFirstName() + ' ' + mentors.get(0).getLastName()}"></h2>
+<h2 th:text="${'hello ' + mentors.get(1).getFirstName()}"></h2>
+
+<!-- Link -->
+<h2>
+    <a th:href="@{https://www.cydeo.com}">Cydeo Page</a>
+</h2>
+
+<h2>
+    <a th:href="@{/mentor/welcome}">Welcome</a>
+</h2>
+
+<!-- Adding Parameters in link -->
+<h2>
+    <a th:href="@{/mentor/welcome(id=3)}">Show The Mentor That ID Is Match</a>
+</h2>
+
+<h2>
+    <a th:href="@{/mentor/welcome(name=${mentors.get(0).firstName})}">Show The Mentor Name That I Sent</a>
+</h2>
+
+<!-- Iteration -->
+<ul>
+    <!-- Takes each mentor (element) and puts it to model -->
+    <h2>Printing mentors firstname</h2>
+    <li th:each="mentor : ${mentors}" th:text="${mentor.firstName}"></li>
+</ul>
+
+<ul>
+    <!-- In Thymeleaf, we can use properties directly instead of getter methods -->
+    <h2>Printing mentors lastname</h2>
+    <li th:each="mentor : ${mentors}" th:text="${mentor.lastName}"></li>
+</ul>
+
+<h2>Printing Mentors in table</h2>
+<table>
+    <thead>
+    <tr>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Age</td>
+        <td>State</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="m : ${mentors}">
+        <td th:text="${m.firstName}"></td>
+        <td th:text="${m.lastName}"></td>
+        <td th:text="${m.age}"></td>
+        <td th:text="${m.state}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
