@@ -23,10 +23,19 @@ public class StudentController {
 
         return "student/drop";
     }
+//    @RequestMapping("/welcome")
+//    public String welcome(@RequestParam Integer id, Model model){
+//
+//        model.addAttribute("id",id);
+//        model.addAttribute("matching_student",STUDENTS.get(id));
+//
+//        return "student/welcome";
+//    }
+
     @RequestMapping("/welcome")
-    public String welcome(@RequestParam int id, Model model){
-        model.addAttribute("id",id);
-        model.addAttribute("matching_student",STUDENTS.get(id));
+    public String welcome(@RequestParam String name, Model model){
+
+        model.addAttribute("studentName",name);
         return "student/welcome";
     }
 

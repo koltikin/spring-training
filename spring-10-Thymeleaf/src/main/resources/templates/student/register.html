@@ -29,6 +29,10 @@
     <a th:href = "@{/student/welcome(id = 3)}">Show The Student That ID Is Match</a>
 </h2>
 
+<h2>
+    <a th:href = "@{/student/welcome(name = ${students.get(0).getFirstName()})}">Show The Student Name That I Sent</a>
+</h2>
+
 
 
 </body>
