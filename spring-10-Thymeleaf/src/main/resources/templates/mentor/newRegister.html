@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{index.page.title}"></title>
+</head>
+<body>
+<h1>welcome to Cydeo </h1>
+<div align="center" >
+
+<!--    if method is get it posts all the information to the address bar on browser-->
+<!--    http://localhost:8080/mentor/confirm?firstName=ziya&lastName=ka%C5%9Fgari&email=koltikin210%40gmail.com&graduated=true&_graduated=on&gender=Male&batch=JD11&company=cydeo-->
+
+<form th:action="@{/mentor/confirm}" method="post" th:object="${mentor}">
+    <h2>New Mentor Register</h2>
+    <lable>First Name</lable>
+    <input type="text" th:field="*{firstName}"><br>
+
+    <lable>Last Name</lable>
+    <input type="text" th:field="*{lastName}"><br>
+
+    <lable>Email</lable>
+    <input type="email" th:field="*{email}"><br>
+
+    <lable>Graduated</lable>
+    <input type="checkbox" th:field="*{graduated}"><br>
+
+    <lable>Gender</lable>
+<!--    <input type="radio" th:value="Male" th:field="*{gender}" th:text="Male">-->
+<!--    <input type="radio" value="Female" th:field="*{gender}">Female<br>-->
+        <input type="radio" th:field="*{gender}" th:each="gender:${gender}" th:value="${gender}" th:text="${gender}"><br>
+
+    <lable>Batch Number:</lable>
+    <select th:field="*{batch}">
+        <option th:each="batch:${batchList}" th:value="${batch}" th:text="${batch}"></option>
+    </select><br>
+
+    <lable>Company</lable>
+    <textarea th:field="*{company}">Name of your company</textarea><br>
+
+    <button type="submit">Register</button>
+
+
+</form>
+</div>
+
+
+</body>
+</html>

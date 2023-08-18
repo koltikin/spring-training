@@ -1,6 +1,7 @@
 package com.cydeo;
 
 import com.cydeo.bootstrap.DataGenerator;
+import com.cydeo.config.AuthorConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -13,6 +14,7 @@ public class ThymeleafApplication {
 		ApplicationContext context = SpringApplication.run(ThymeleafApplication.class, args);
 		DataGenerator dataGenerator = context.getBean(DataGenerator.class);
 		dataGenerator.createStudent();
+
 	}
 
 }

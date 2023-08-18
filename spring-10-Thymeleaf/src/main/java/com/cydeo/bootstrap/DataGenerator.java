@@ -14,6 +14,7 @@ public class DataGenerator {
     private final Faker faker = new Faker();
     public static List<Student> STUDENTS = new ArrayList<>();
     public static List<Mentor> MENTORS = new ArrayList<>();
+    public static List<String> BATCHES = new ArrayList<>();
 
     public void createStudent(){
 
@@ -54,6 +55,10 @@ public class DataGenerator {
                 new Mentor(faker.name().firstName(),faker.name().lastName(),faker.address().state(),faker.number().numberBetween(18,50)),
                 new Mentor(faker.name().firstName(),faker.name().lastName(),faker.address().state(),faker.number().numberBetween(18,50)),
                 new Mentor(faker.name().firstName(),faker.name().lastName(),faker.address().state(),faker.number().numberBetween(18,50)));
+
+
+        BATCHES = Arrays.asList("JD1","JD2","JD3","JD4","JD5","JD6","JD7","JD8","JD9","JD10","JD11","JD12","JD113");
+
 
 
 
