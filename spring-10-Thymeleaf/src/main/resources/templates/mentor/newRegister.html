@@ -7,6 +7,10 @@
 <body>
 <h1>welcome to Cydeo </h1>
 <div align="center" >
+
+<!--    if method is get it posts all the information to the address bar on browser-->
+<!--    http://localhost:8080/mentor/confirm?firstName=ziya&lastName=ka%C5%9Fgari&email=koltikin210%40gmail.com&graduated=true&_graduated=on&gender=Male&batch=JD11&company=cydeo-->
+
 <form th:action="@{/mentor/confirm}" method="post" th:object="${mentor}">
     <h2>New Mentor Register</h2>
     <lable>First Name</lable>
