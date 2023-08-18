@@ -1,18 +1,25 @@
 package com.cydeo.controller;
 
+import com.cydeo.config.AuthorConfig;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import static com.cydeo.bootstrap.DataGenerator.STUDENTS;
 
 @Controller
 @RequestMapping("/student")
+@AllArgsConstructor
 public class StudentController {
-
-    @RequestMapping("/register")
+    private AuthorConfig authorConfig;
+//    @RequestMapping("/register")
+    @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("students", STUDENTS);
+        model.addAttribute("userName",authorConfig.getUserName());
         return "student/register";
     }
 
