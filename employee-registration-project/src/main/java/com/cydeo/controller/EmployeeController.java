@@ -52,7 +52,13 @@ public class EmployeeController {
 
         return "/employee/employee-list";
 
-//        return "redirect:/register";
     }
+
+    @GetMapping("/login")
+    public String employeeLogin(Model model){
+
+        return "/employee/employee-login";
+    }
+
 
 }
