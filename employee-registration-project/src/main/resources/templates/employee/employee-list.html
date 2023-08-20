@@ -36,7 +36,7 @@
             </thead>
             <tbody>
             <tr th:each="employee :${employeeList}">
-                <th scope="col" th:text="${employee.firsName}">First Name</th>
+                <th scope="col" th:text="${employee.firstName}">First Name</th>
                 <th scope="col" th:text="${employee.lastName}">Last Name</th>
 <!--                th:text="${#dates.format(birthDate, 'dd/MM/yyyy')-->
                 <th scope="col" th:text="${#execInfo.getNow().get(1)-employee.birthDate.getYear()}">Birth Date</th>
