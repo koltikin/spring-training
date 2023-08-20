@@ -13,8 +13,8 @@ public class Employee {
 
     @NotBlank
     @Size(max = 20,min = 2)
-    private String firstName;
-    private String lastName;
+    private String firstName ,lastName;
+//    private String lastName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")  // Thymeleaf accepts yyyy-MM-dd, but the localDate accepts mm-MM-yyyy
     private LocalDate birthDate;
     private String email;
