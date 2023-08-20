@@ -47,16 +47,38 @@
                     <div class="form-group col-md-4">
                         <label for="inputBirthDate">Birth Date</label>
                         <input type="date" class="form-control" id="inputBirthDate"  th:field="*{birthDate}"  placeholder="dd/mm/yyyy">
+
+                        <div class="text-danger" th:if = "${#fields.hasErrors('birthDate')}">
+                            <ol>
+                                <li th:each = "error :${#fields.errors('birthDate')}" th:text="${error}"></li>
+                            </ol>
+                        </div>
+
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" th:field="*{email}" placeholder="Email">
+                        <input type="text" class="form-control" id="inputEmail4" th:field="*{email}" placeholder="Email">
+
+                        <div class="text-danger" th:if = "${#fields.hasErrors('email')}">
+                            <ol>
+                                <li th:each = "error :${#fields.errors('email')}" th:text="${error}"></li>
+                            </ol>
+                        </div>
+
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputPassword4">Password</label>
                         <input type="password" class="form-control" id="inputPassword4" th:field="*{password}" placeholder="Password">
+
+                        <div class="text-danger" th:if = "${#fields.hasErrors('password')}">
+                            <ol>
+                                <li th:each = "error :${#fields.errors('password')}" th:text="${error}"></li>
+                            </ol>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="form-group">
