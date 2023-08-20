@@ -6,11 +6,13 @@ import com.cydeo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.text.DateFormat;
 
 import static com.cydeo.bootstrap.DataGenerator.STATES;
@@ -31,7 +33,12 @@ public class EmployeeController {
         return "/employee/employee-create";
     }
     @PostMapping("/insert")
-    public String registerConfirm(@ModelAttribute("employee") Employee employee){
+    public String registerConfirm(@ModelAttribute("employee") @Valid Employee employee, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("stateList", STATES);
+            return "/employee/employee-create";
+        }
 
         employeeService.saveEmployee(employee);
 
