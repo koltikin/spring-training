@@ -1,19 +1,14 @@
 package com.cydeo.controller;
 
-import com.cydeo.bootstrap.DataGenerator;
 import com.cydeo.model.Employee;
 import com.cydeo.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.text.DateFormat;
 
 import static com.cydeo.bootstrap.DataGenerator.STATES;
 
@@ -50,14 +45,31 @@ public class EmployeeController {
 
         model.addAttribute("employeeList",employeeService.readAllEmployees());
 
-        return "/employee/employee-list";
+        return "employee/employee-list";
 
     }
 
-    @GetMapping("/login")
-    public String employeeLogin(Model model){
+    @PostMapping("/login/confirm")
+    public String employeeLoginConfirm(
+            @ModelAttribute("email") String email,
+            String password,
+            @RequestParam(required = false, defaultValue = "false") boolean remember_me,
+            Model model) {
 
-        return "/employee/employee-login";
+        if(email.isEmpty()){
+            model.addAttribute("error", "Enter your email");
+        }
+        else if (employeeService.isRegistered(email)) {
+            if (employeeService.isPasswordMatch(password)) {
+                return "redirect:/employee/list";
+            } else {
+                model.addAttribute("error", "Invalid email or password");
+            }
+        } else {
+            model.addAttribute("error", "You are not registered yet");
+        }
+
+        return "employee/employee-login"; // Redirect back to the login page
     }
 
 

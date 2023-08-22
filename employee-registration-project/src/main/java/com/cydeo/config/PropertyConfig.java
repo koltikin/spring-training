@@ -10,7 +10,7 @@ public class PropertyConfig {
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("CustomValidationMessages"); // Without ".properties" extension
+        messageSource.setBasename("myValidationMessages"); // Without ".properties" extension
         return messageSource;
     }
 
