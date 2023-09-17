@@ -1,6 +1,6 @@
 package com.cydeo.entity;
 
-import com.cydeo.entity.enums.Gender;
+import com.cydeo.enums.Gender;
 
 import javax.persistence.*;
 import java.time.LocalDate;

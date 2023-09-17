@@ -1,4 +1,4 @@
-package com.cydeo.entity.enums;
+package com.cydeo.enums;
 
 public enum Gender {
     MALE,FEMALE
