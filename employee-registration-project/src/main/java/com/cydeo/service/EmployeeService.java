@@ -19,4 +19,15 @@ public class EmployeeService {
         return employeeList;
     }
 
+    public boolean isRegistered(String email){
+        for (Employee employee : employeeList) {
+            if (employee.getEmail().equals(email)) return true;
+        }return false;
+    }
+
+    public boolean isPasswordMatch(String password){
+        for (Employee employee : employeeList) {
+            if (employee.getPassword().equals(password)) return true;
+        }return false;
+    }
 }
