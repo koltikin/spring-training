@@ -3,9 +3,11 @@ package com.cydo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -20,6 +22,9 @@ public class Merchant {
     private BigDecimal transactionFee;
     private BigDecimal commissionRate;
     private Integer payoutDelayCount;
+
+    @OneToMany(mappedBy = "merchant") //in one toMany ownership belongs to many side
+    private List<Payment> paymentList;
 
     public Merchant(String name, String code, BigDecimal transactionFee, BigDecimal commissionRate, Integer payoutDelayCount) {
         this.name = name;
