@@ -3,6 +3,7 @@ package com.cydo.entity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +20,9 @@ public class Customer {
     private String surname;
     @Column(length = 50)
     private String username;
+
+    @OneToMany(mappedBy = "customer",fetch = FetchType.LAZY)
+    private List<Payment> paymentList;
 
     public Customer(String address, String email, String name, String surname, String username) {
         this.address = address;
