@@ -1,8 +1,11 @@
 package com.cydo.entity;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "customers")
 public class Customer {
     @Id
@@ -17,5 +20,11 @@ public class Customer {
     @Column(length = 50)
     private String username;
 
-
+    public Customer(String address, String email, String name, String surname, String username) {
+        this.address = address;
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+    }
 }
