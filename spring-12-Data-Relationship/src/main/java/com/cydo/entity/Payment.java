@@ -20,14 +20,22 @@ public class Payment {
     @Column(columnDefinition = "DATE")
     private LocalDate createdDate;
 
+//    @Column(precision = 5,scale = 2)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
-    @OneToOne
-    @JoinColumn(name = "ziya") // rename the column name
+    @OneToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "ziya") // rename the column name
     private PaymentDetail paymentDetail;
+
+    @ManyToOne
+    private Merchant merchant;
+
+    @ManyToOne
+    private Customer customer;
 
     public Payment(LocalDate createdDate, BigDecimal amount, PaymentStatus paymentStatus) {
         this.createdDate = createdDate;
