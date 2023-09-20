@@ -20,6 +20,7 @@ public class Payment {
     @Column(columnDefinition = "DATE")
     private LocalDate createdDate;
 
+//    @Column(precision = 5,scale = 2)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
@@ -32,6 +33,9 @@ public class Payment {
 
     @ManyToOne
     private Merchant merchant;
+
+    @ManyToOne
+    private Customer customer;
 
     public Payment(LocalDate createdDate, BigDecimal amount, PaymentStatus paymentStatus) {
         this.createdDate = createdDate;

@@ -23,8 +23,8 @@ public class DataGenerator implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Payment payment1 = new Payment(LocalDate.of(2022,4,19),new BigDecimal("150000"), PaymentStatus.SUCCESS);
-        PaymentDetail paymentDetail1 = new PaymentDetail(new BigDecimal("140000"),new BigDecimal("10000"),LocalDate.of(2022,4,24));
+        Payment payment1 = new Payment(LocalDate.of(2022,4,19),new BigDecimal("150"), PaymentStatus.SUCCESS);
+        PaymentDetail paymentDetail1 = new PaymentDetail(new BigDecimal("140000"),new BigDecimal("145.45782"),LocalDate.of(2022,4,24));
 
         payment1.setPaymentDetail(paymentDetail1);
 
