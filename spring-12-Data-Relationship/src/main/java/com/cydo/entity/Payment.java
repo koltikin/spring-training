@@ -26,7 +26,7 @@ public class Payment {
     private PaymentStatus paymentStatus;
 
     @OneToOne
-    @JoinColumn(name = "ziya") // rename the column name
+//    @JoinColumn(name = "ziya") // rename the column name
     private PaymentDetail paymentDetail;
 
     public Payment(LocalDate createdDate, BigDecimal amount, PaymentStatus paymentStatus) {
