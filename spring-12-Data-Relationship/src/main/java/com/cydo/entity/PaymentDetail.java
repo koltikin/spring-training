@@ -17,6 +17,12 @@ public class PaymentDetail {
     private long id;
     private BigDecimal merchantPayoutAmount;
     private BigDecimal commissionAmount;
+    @Column(columnDefinition = "DATE")
     private LocalDate payoutDate;
 
+    public PaymentDetail(BigDecimal merchantPayoutAmount, BigDecimal commissionAmount, LocalDate payoutDate) {
+        this.merchantPayoutAmount = merchantPayoutAmount;
+        this.commissionAmount = commissionAmount;
+        this.payoutDate = payoutDate;
+    }
 }

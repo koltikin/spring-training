@@ -25,6 +25,10 @@ public class Payment {
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
 
+    @OneToOne
+    @JoinColumn(name = "ziya") // rename the column name
+    private PaymentDetail paymentDetail;
+
     public Payment(LocalDate createdDate, BigDecimal amount, PaymentStatus paymentStatus) {
         this.createdDate = createdDate;
         this.amount = amount;
