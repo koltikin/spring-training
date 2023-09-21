@@ -37,6 +37,9 @@ public class Payment {
     @ManyToOne
     private Customer customer;
 
+    @OneToOne
+    private Cart cart;
+
     public Payment(LocalDate createdDate, BigDecimal amount, PaymentStatus paymentStatus) {
         this.createdDate = createdDate;
         this.amount = amount;
