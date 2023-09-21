@@ -44,6 +44,9 @@ public class DataGenerator implements CommandLineRunner {
         payment1.setCustomer(customer1);
         payment2.setCustomer(customer1);
 
+        payment1.setCart(cart1);
+        payment2.setCart(cart2);
+
         payment1.setPaymentDetail(paymentDetail1);
         payment2.setPaymentDetail(paymentDetail2);
 
@@ -55,9 +58,11 @@ public class DataGenerator implements CommandLineRunner {
 
         merchantRepository.save(merchant1);
         customerRepository.save(customer1);
-        paymentRepository.saveAll(Arrays.asList(payment1,payment2));
         itemRepository.saveAll(Arrays.asList(item1,item2,item3));
         cartRepository.saveAll(Arrays.asList(cart1,cart2));
+        paymentRepository.saveAll(Arrays.asList(payment1,payment2));
+
+
 
 
 
