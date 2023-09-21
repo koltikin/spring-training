@@ -3,9 +3,6 @@ package com.cydeo.loosely_coupled;
 import com.cydeo.loosely_coupled.caseFactory.Case;
 import com.cydeo.loosely_coupled.monitorFactory.Monitor;
 import com.cydeo.loosely_coupled.motherBoardFactory.MotherBoard;
-import com.cydeo.tightly_coupled.AcerMonitor;
-import com.cydeo.tightly_coupled.AsusMotherboard;
-import com.cydeo.tightly_coupled.DellCase;
 
 public class Pc {
 
