@@ -1,11 +1,13 @@
 package com.cydeo.entity;
 
+import com.cydeo.enums.UserRole;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 @Data
@@ -20,4 +22,8 @@ public class AccountDetails extends BaseEntity{
     private String state;
     private int age;
     private String postalCode;
+    private UserRole role;
+
+    @OneToOne(mappedBy = "accountDetails")
+    private UserAccount userAccount;
 }

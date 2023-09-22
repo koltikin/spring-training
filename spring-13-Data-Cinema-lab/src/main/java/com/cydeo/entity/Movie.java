@@ -13,6 +13,7 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
+@AttributeOverride(name = "id",column = @Column(name = "movie_id"))
 public class Movie extends BaseEntity{
     private String name;
     private BigDecimal price;

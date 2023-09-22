@@ -13,9 +13,9 @@ public class UserAccount extends BaseEntity{
 
     private String email;
     private String password;
-    private String userName;
+    private String username;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_details_id")
     private AccountDetails accountDetails;
 }

@@ -3,15 +3,13 @@ package com.cydeo.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
+@AttributeOverride(name = "id",column = @Column(name = "ticket_id"))
 public class Ticket extends BaseEntity {
 
     private Integer seatNumber;
@@ -20,7 +18,10 @@ public class Ticket extends BaseEntity {
     private LocalDateTime dateTime;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_cinema_id")
     private MovieCinema movieCinema;
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 }
