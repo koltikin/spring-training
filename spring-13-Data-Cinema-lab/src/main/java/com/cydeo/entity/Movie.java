@@ -15,16 +15,23 @@ import java.util.List;
 @NoArgsConstructor
 @AttributeOverride(name = "id",column = @Column(name = "movie_id"))
 public class Movie extends BaseEntity{
+
     private String name;
     private BigDecimal price;
+
     @Enumerated(EnumType.STRING)
     private MovieType type;
+
+    @Enumerated(EnumType.STRING)
     private MovieState state;
+
     @Column(columnDefinition = "DATE")
     private LocalDate releaseDate;
+
     private Integer duration;
+
     @Column(columnDefinition = "text")
-    private String summery;
+    private String summary;
 
     @ManyToMany
     @JoinTable(name = "movie_genre_rel",
