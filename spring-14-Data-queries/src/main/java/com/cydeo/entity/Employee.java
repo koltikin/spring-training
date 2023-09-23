@@ -29,7 +29,7 @@ public class Employee extends BaseEntity{
     private Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JoinColumn(name = "region_id")
     private Region regin;
 
 
