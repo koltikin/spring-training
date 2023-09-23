@@ -31,7 +31,7 @@ public class Movie extends BaseEntity{
     private Integer duration;
 
     @Column(columnDefinition = "text")
-    private String summery;
+    private String summary;
 
     @ManyToMany
     @JoinTable(name = "movie_genre_rel",
