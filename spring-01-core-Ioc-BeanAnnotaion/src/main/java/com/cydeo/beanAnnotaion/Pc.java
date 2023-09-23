@@ -4,7 +4,9 @@ package com.cydeo.beanAnnotaion;
 import com.cydeo.beanAnnotaion.casefactory.Case;
 import com.cydeo.beanAnnotaion.monitorfactory.Monitor;
 import com.cydeo.beanAnnotaion.motherboardfactory.MotherBoard;
+import lombok.Data;
 
+@Data
 public class Pc {
 
     private Case aCase;

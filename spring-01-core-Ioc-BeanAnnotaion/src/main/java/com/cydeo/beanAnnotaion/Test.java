@@ -29,7 +29,7 @@ public class Test {
 
         BeanFactory container = new AnnotationConfigApplicationContext(ComputerConfig.class);
 
-        Case appleCaseWithBeanFactory = container.getBean("DellCase",Case.class);
+//        Case appleCaseWithBeanFactory = container.getBean("DellCase",Case.class);
 
 //        appleCaseWithBeanFactory.pressPowerButton();
 
@@ -37,7 +37,32 @@ public class Test {
 
         Monitor sonyMonitor = container.getBean("sony",Monitor.class); // use custom bean name @Bean(name = "sony")
 
-        System.out.println(sonyMonitor.getManufacturer());
+//        System.out.println(sonyMonitor.getManufacturer());
+
+        /** primary bean @Primary */
+
+        Case theCase = context1.getBean(Case.class);   // use primary Apple Case
+        Monitor theMonitor = context1.getBean(Monitor.class);   // use primary LgMonitor
+        MotherBoard theMotherBoard = container.getBean(MotherBoard.class); // user primary AsusMotherBoard
+
+        Pc myPc1 = new Pc(theCase,theMonitor,theMotherBoard);
+
+        System.out.println("**************** myPc1 ********************");
+
+        myPc1.powerUp();
+        myPc1.getMotherBoard().loadProgram("Spring IOC");
+
+        /** name bean */
+        Case myCase = context1.getBean("dell",Case.class);
+        Monitor myMonitor = context1.getBean("sony",Monitor.class);
+        MotherBoard myMotherBoard = container.getBean("asus",MotherBoard.class); // if the bean is only one it doesn't care the bean name
+
+        Pc myPc2 = new Pc(myCase,myMonitor,myMotherBoard);
+
+        System.out.println("**************** myPc2 ********************");
+
+        myPc2.powerUp();
+        myPc2.getMotherBoard().loadProgram("Spring IOC");
 
     }
 

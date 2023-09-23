@@ -10,14 +10,15 @@ import com.cydeo.beanAnnotaion.motherboardfactory.AsusMotherBoard;
 import com.cydeo.beanAnnotaion.motherboardfactory.MotherBoard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ComputerConfig {
-    @Bean
+    @Bean("dell")
     public Case DellCase(){
         return new DellCase("220B", "Dell", "240");
     }
-    @Bean
+    @Bean("hp")
     public Case HpCase(){
         Case hpCase = new Case("220B", "Dell", "240") {
             @Override
@@ -28,11 +29,12 @@ public class ComputerConfig {
         return hpCase;
     }
     @Bean
+    @Primary
     public Monitor LgMonitor(){
         return new LgMonitor("31 inch Beast", "Lg", 31);
     }
 
-    @Bean
+    @Bean("acer")
     public Monitor AcerMonitor(){
         return new AcerMonitor("27inch Beast", "Acer", 27);
     }
@@ -42,7 +44,7 @@ public class ComputerConfig {
         return new SonyMonitor("27inch Beast", "Sony", 27);
     }
 
-    @Bean
+    @Bean("asus")
     public MotherBoard AsusMotherBoard(){
         return new AsusMotherBoard("BJ-200", "Asus", 4, 6, "v2.44");
     }
