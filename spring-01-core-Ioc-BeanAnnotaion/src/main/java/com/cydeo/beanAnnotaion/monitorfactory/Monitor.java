@@ -1,5 +1,8 @@
 package com.cydeo.beanAnnotaion.monitorfactory;
 
+import lombok.Data;
+
+@Data
 public abstract class Monitor {
     private String model;
     private String manufacturer;
