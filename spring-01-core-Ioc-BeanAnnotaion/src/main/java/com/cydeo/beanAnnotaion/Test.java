@@ -4,6 +4,7 @@ import com.cydeo.beanAnnotaion.casefactory.Case;
 import com.cydeo.beanAnnotaion.config.CaseConfig;
 import com.cydeo.beanAnnotaion.config.ComputerConfig;
 import com.cydeo.beanAnnotaion.monitorfactory.Monitor;
+import com.cydeo.beanAnnotaion.motherboardfactory.MotherBoard;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,10 +19,10 @@ public class Test {
 
         Monitor monitor = context.getBean("LgMonitor",Monitor.class); // get the monitor with default bean name
         // (default bean name is the name of the method inside the config class)
-        System.out.println(monitor.getManufacturer());
+//        System.out.println(monitor.getManufacturer());
 
         Case appleCase = context1.getBean("appleCase", Case.class);
-        appleCase.pressPowerButton();
+//        appleCase.pressPowerButton();
 
 
         /** create container use BeanFactory interface */
@@ -30,7 +31,13 @@ public class Test {
 
         Case appleCaseWithBeanFactory = container.getBean("DellCase",Case.class);
 
-        appleCaseWithBeanFactory.pressPowerButton();
+//        appleCaseWithBeanFactory.pressPowerButton();
+
+        /** custom bean name */
+
+        Monitor sonyMonitor = container.getBean("sony",Monitor.class); // use custom bean name @Bean(name = "sony")
+
+        System.out.println(sonyMonitor.getManufacturer());
 
     }
 

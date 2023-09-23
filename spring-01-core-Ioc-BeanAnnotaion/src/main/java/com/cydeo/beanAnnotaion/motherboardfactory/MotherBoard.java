@@ -1,5 +1,8 @@
 package com.cydeo.beanAnnotaion.motherboardfactory;
 
+import lombok.Data;
+
+@Data
 public abstract class MotherBoard {
 
     private String model;

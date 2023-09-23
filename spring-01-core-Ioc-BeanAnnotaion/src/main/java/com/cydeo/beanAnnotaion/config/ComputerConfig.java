@@ -37,7 +37,7 @@ public class ComputerConfig {
         return new AcerMonitor("27inch Beast", "Acer", 27);
     }
 
-    @Bean
+    @Bean(name = "sony")
     public Monitor SonyMonitor(){
         return new SonyMonitor("27inch Beast", "Sony", 27);
     }
