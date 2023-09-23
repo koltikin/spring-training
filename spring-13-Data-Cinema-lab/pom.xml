@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cydeo</groupId>
-	<artifactId>spring-Data-Cinema-lab</artifactId>
+	<artifactId>spring-13-Data-Cinema-lab</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-Data-Cinema-lab</name>
-	<description>spring-Data-Cinema-lab</description>
+	<name>spring-13-Data-Cinema-lab</name>
+	<description>spring-13-Data-Cinema-lab</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
