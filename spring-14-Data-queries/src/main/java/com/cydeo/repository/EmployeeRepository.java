@@ -36,9 +36,16 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
 
     /** display all employees salary grater than equal to "" in order */
-
     List<Employee> findBySalaryGreaterThanEqualOrderBySalary(BigDecimal salary);
     List<Employee> findBySalaryGreaterThanEqualOrderBySalaryDesc(BigDecimal salary);
+
+
+    /** display top 3 unique employees tha is making less than '' salary */
+    List<Employee> findDistinctFirst3BySalaryLessThan(BigDecimal salary);
+
+
+    /** display all employees that not have email address */
+    List<Employee> findByEmailIsNull();
 
 
 
