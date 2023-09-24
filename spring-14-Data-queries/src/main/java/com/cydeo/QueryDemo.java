@@ -41,6 +41,9 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("findBySalaryGreaterThanEqualOrderBySalaryDesc" +employeeRepository.findBySalaryGreaterThanEqualOrderBySalaryDesc(BigDecimal.valueOf(145000)));
         System.out.println("findDistinctFirst3BySalaryLessThan" +employeeRepository.findDistinctFirst3BySalaryLessThan(BigDecimal.valueOf(120000)));
 
+        System.out.println("******************* JPQL *******************************");
+        System.out.println("JPQL retrieveEmployeeDetail: " + employeeRepository.retrieveEmployeeDetail());
+        System.out.println("JPQL retrieveEmployeeSalary: " + employeeRepository.retrieveEmployeeSalary());
 
     }
 
