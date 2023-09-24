@@ -1,16 +1,20 @@
 package com.cydeo;
 
 import com.cydeo.repository.DepartmentRepository;
+import com.cydeo.repository.EmployeeRepository;
 import com.cydeo.repository.RegionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
 
 @Component
 @AllArgsConstructor
 public class QueryDemo implements CommandLineRunner {
     private final RegionRepository regionRepository;
     private final DepartmentRepository departmentRepository;
+    private final EmployeeRepository employeeRepository;
     @Override
     public void run(String... args) throws Exception {
         System.out.println("findByCountry: " + regionRepository.findByCountry("Canada"));
@@ -29,6 +33,12 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("findByDivisionEndsWithIgnoreCase" + departmentRepository.findByDivisionEndsWithIgnoreCase("ics"));
         System.out.println("findDistinctTop3ByDivisionContaining" + departmentRepository.findDistinctTop3ByDivisionContaining("Hea"));
 
+        System.out.println("************** employee ************************");
+
+        System.out.println("findByEmail" + employeeRepository.findByEmail("lguppie68@army.mil"));
+        System.out.println("findBySalaryGreaterThan" +employeeRepository.findBySalaryGreaterThan(BigDecimal.valueOf(165000)));
+        System.out.println("findBySalaryGreaterThanEqualOrderBySalary" +employeeRepository.findBySalaryGreaterThanEqualOrderBySalary(BigDecimal.valueOf(145000)));
+        System.out.println("findBySalaryGreaterThanEqualOrderBySalaryDesc" +employeeRepository.findBySalaryGreaterThanEqualOrderBySalaryDesc(BigDecimal.valueOf(145000)));
 
 
     }

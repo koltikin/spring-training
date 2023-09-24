@@ -4,6 +4,7 @@ import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
@@ -30,7 +31,14 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     /** display all employees with salary less than '' */
     List<Employee> findBySalaryLessThan(BigDecimal salary);
 
-    /** display all employees with salary less than '' */
+    /** display all employees that has been hired between "" and "" */
+    List<Employee> findByHireDateAfterAndHireDateAfter(LocalDate startDate, LocalDate endDate);
+    List<Employee> findByHireDateBetween(LocalDate startDate, LocalDate endDate);
+
+    /** display all employees salary grater than equal to "" in order */
+
+    List<Employee> findBySalaryGreaterThanEqualOrderBySalary(BigDecimal salary);
+    List<Employee> findBySalaryGreaterThanEqualOrderBySalaryDesc(BigDecimal salary);
 
 
 
