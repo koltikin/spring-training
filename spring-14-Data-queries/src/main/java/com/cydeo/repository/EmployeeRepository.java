@@ -2,6 +2,7 @@ package com.cydeo.repository;
 
 import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -48,6 +49,14 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     List<Employee> findByEmailIsNull();
 
 
+                      /** JPQL */
+
+
+   @Query("select e from Employee e where e.email='bdaily6k@ucla.edu'")
+   Employee retrieveEmployeeDetail();
+
+   @Query("select e.salary from Employee e where e.email = 'bdaily6k@ucla.edu'")
+    BigDecimal retrieveEmployeeSalary();
 
 
 
