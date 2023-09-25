@@ -17,9 +17,13 @@ public class QueryTest implements CommandLineRunner {
     private final UserRepository userRepository;
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("*********** accountRepository *************************");
+        System.out.println("*********** accountRepository derived Query *************************");
         System.out.println("findByAgeIsBetween" + accountRepository.findByAgeIsBetween(28, 47)); // include both 28 and 47
         System.out.println("findByAddressStartsWith" + accountRepository.findByAddressStartsWith("2"));
         System.out.println("findByOrderByAge" + accountRepository.findByOrderByAge());
+
+        System.out.println("*********** accountRepository JPQL Query *************************");
+        System.out.println("retrieveAllAccounts" + accountRepository.retrieveAllAccounts());
+
     }
 }
