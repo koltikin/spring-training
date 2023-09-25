@@ -59,7 +59,34 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     BigDecimal retrieveEmployeeSalary();
 
 
+   /** Not Equal */
+   @Query("select e from Employee e where e.salary <> ?1")
+   List<Employee> retrieveEmployeeSalaryNotEqual(int salary);
 
+    /** Like, Contains, StartsWith, EndsWith*/
+    @Query("select e from Employee e where e.firstName like ?1")
+    List<Employee> retrieveEmployeeFirstNameLike(String pattern);
 
+    /** less than */
+    @Query("select e from Employee e where e.salary < ?1")
+    List<Employee> retrieveEmployeeLessThan(BigDecimal salary);
+
+    @Query("select e.firstName from Employee e where e.salary < ?1")
+    List<String> retrieveEmployeeNameLessThan(BigDecimal salary);
+
+    /** grater than */
+    @Query("select e from Employee e where e.salary > ?1")
+    List<Employee> retrieveEmployeeGraterThan(BigDecimal salary);
+
+    @Query("select e.firstName from Employee e where e.salary > ?1")
+    List<String> retrieveEmployeeNameGraterThan(BigDecimal salary);
+
+    /** between */
+    @Query("select e from Employee e where e.salary between ?1 AND ?2")
+    List<Employee> retrieveEmployeeBetweenSalary(BigDecimal salary1,BigDecimal salary2);
+     /** before */
+
+     @Query("select e from Employee e where e.hireDate > ?1")
+    List<Employee> retrieveEmployeeBeforeDate(LocalDate hireDate);
 
 }
