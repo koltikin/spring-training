@@ -4,6 +4,8 @@ import com.cydeo.entity.Cinema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -11,17 +13,20 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     // ------------------- DERIVED QUERIES ------------------- //
 
-    //Write a derived query to get cinema with a specific name
+    /** Write a derived query to get cinema with a specific name */
+    Cinema findByName(String name);
+    Optional<Cinema> findBy(String name);
 
 
-    //Write a derived query to read sorted the top 3 cinemas that contains a specific sponsored name
+    /** Write a derived query to read sorted the top 3 cinemas that contains a specific sponsored name */
+    List<Cinema> findTop3BySponsoredNameContainingOrderBySponsoredName(String name);
+
+    /** Write a derived query to list all cinemas in a specific country */
+    List<Cinema> findAllByLocation_Country(String country);
 
 
-    //Write a derived query to list all cinemas in a specific country
-
-
-    //Write a derived query to list all cinemas with a specific name or sponsored name
-
+    /** Write a derived query to list all cinemas with a specific name or sponsored name */
+    List<Cinema> findAllByNameOrSponsoredName(String name,String sponsoredName);
 
     // ------------------- JPQL QUERIES ------------------- //
 
