@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Component
 @AllArgsConstructor
@@ -44,6 +45,8 @@ public class QueryDemo implements CommandLineRunner {
         System.out.println("******************* JPQL *******************************");
         System.out.println("JPQL retrieveEmployeeDetail: " + employeeRepository.retrieveEmployeeDetail());
         System.out.println("JPQL retrieveEmployeeSalary: " + employeeRepository.retrieveEmployeeSalary());
+        System.out.println("JPQL retrieveEmployeeBeforeDate: " + employeeRepository.retrieveEmployeeBeforeDate(LocalDate.of(2015,05,20)));
+
 
     }
 

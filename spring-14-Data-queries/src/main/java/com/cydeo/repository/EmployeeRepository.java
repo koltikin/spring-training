@@ -1,8 +1,10 @@
 package com.cydeo.repository;
 
+import com.cydeo.entity.Department;
 import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -57,6 +59,61 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
 
    @Query("select e.salary from Employee e where e.email = 'bdaily6k@ucla.edu'")
     BigDecimal retrieveEmployeeSalary();
+
+
+   /** Not Equal */
+   @Query("select e from Employee e where e.salary <> ?1")
+   List<Employee> retrieveEmployeeSalaryNotEqual(int salary);
+
+    /** Like, Contains, StartsWith, EndsWith*/
+    @Query("select e from Employee e where e.firstName like ?1")
+    List<Employee> retrieveEmployeeFirstNameLike(String pattern);
+
+    /** less than */
+    @Query("select e from Employee e where e.salary < ?1")
+    List<Employee> retrieveEmployeeLessThan(BigDecimal salary);
+
+    @Query("select e.firstName from Employee e where e.salary < ?1")
+    List<String> retrieveEmployeeNameLessThan(BigDecimal salary);
+
+    /** grater than */
+    @Query("select e from Employee e where e.salary > ?1")
+    List<Employee> retrieveEmployeeGraterThan(BigDecimal salary);
+
+    @Query("select e.firstName from Employee e where e.salary > ?1")
+    List<String> retrieveEmployeeNameGraterThan(BigDecimal salary);
+
+    /** between */
+    @Query("select e from Employee e where e.salary between ?1 AND ?2")
+    List<Employee> retrieveEmployeeBetweenSalary(BigDecimal salary1,BigDecimal salary2);
+     /** before */
+
+     @Query("select e from Employee e where e.hireDate > ?1")
+    List<Employee> retrieveEmployeeBeforeDate(LocalDate hireDate);
+
+     /** NULL  */
+     @Query("select e from Employee e where e.email is NULL")
+    List<Employee> retrieveEmployeeEmailNull(String email);
+
+    /** NOT NULL  */
+    @Query("select e from Employee e where e.email IS NOT NULL")
+    List<Employee> retrieveEmployeeEmailNotNull(String email);
+
+    /** Sorting in Asc order */
+    @Query("select e from Employee e ORDER BY e.salary")
+    List<EmployeeRepository> retrieveEmployeeSalaryAscOrder();
+
+    /** Sorting in Asc order */
+    @Query("select e from Employee e ORDER BY e.salary desc")
+    List<EmployeeRepository> retrieveEmployeeSalaryDescOrder();
+
+    /** Native Query  */
+
+    @Query(nativeQuery = true, value = "select * from employees where salary = ?1")
+    List<Employee> retrieveEmployeeDetailBySalary(BigDecimal salary);
+
+    @Query("SELECT e FROM Employee e WHERE e.salary = :salary")
+    List<Employee> retrieveEmployeeSalary(@Param("salary") BigDecimal salary);
 
 
 
