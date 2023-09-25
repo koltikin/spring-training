@@ -1,8 +1,10 @@
 package com.cydeo.repository;
 
+import com.cydeo.entity.Department;
 import com.cydeo.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -104,5 +106,17 @@ public interface EmployeeRepository extends JpaRepository<Employee,Integer> {
     /** Sorting in Asc order */
     @Query("select e from Employee e ORDER BY e.salary desc")
     List<EmployeeRepository> retrieveEmployeeSalaryDescOrder();
+
+    /** Native Query  */
+
+    @Query(nativeQuery = true, value = "select * from employees where salary = ?1")
+    List<Employee> retrieveEmployeeDetailBySalary(BigDecimal salary);
+
+    @Query("SELECT e FROM Employee e WHERE e.salary = :salary")
+    List<Employee> retrieveEmployeeSalary(@Param("salary") BigDecimal salary);
+
+
+
+
 
 }
