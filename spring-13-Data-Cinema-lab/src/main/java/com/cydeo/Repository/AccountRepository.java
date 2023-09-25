@@ -4,8 +4,10 @@ import com.cydeo.entity.AccountDetails;
 import com.cydeo.enums.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.lang.annotation.Native;
 import java.util.List;
 
 
@@ -56,13 +58,30 @@ public interface AccountRepository extends JpaRepository<AccountDetails, Long> {
 
     // ------------------- Native QUERIES ------------------- //
 
-    //Write a native query to read all accounts with an age lower than a specific value
+    /** Write a native query to read all accounts with an age lower than a specific value */
+    @Query(nativeQuery = true, value = "SELECT * FROM account_details WHERE age < ?1")
+    List<AccountDetails> fetchAllAgeLowerThan(int age);
 
 
-    //Write a native query to read all accounts that a specific value can be containable in the name, address, country, state, city
+    /**Write a native query to read all accounts that a specific value can be containable in the name, address, country, state, city */
+    @Query(nativeQuery = true, value = "SELECT * FROM account_details ad WHERE ad.name ILIKE concat('%', :value, '%')" +
+                                        " OR ad.address ILIKE concat('%', :value, '%')" +
+                                        " OR ad.country ILIKE concat('%', :value, '%')" +
+                                        " OR ad.state ILIKE concat('%', :value, '%')")
+    List<AccountDetails> fetchAllContainsNameAddressCountryState(@Param("value") String value);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM account_details ad WHERE ad.name ILIKE concat('%', ?1, '%')" +
+            " OR ad.address ILIKE concat('%', ?1, '%')" +
+            " OR ad.country ILIKE concat('%', ?1, '%')" +
+            " OR ad.state ILIKE concat('%', ?1, '%')")
+    List<AccountDetails> fetchAllContainsNameAddressCountryState1(String value);
 
-    //Write a native query to read all accounts with an age higher than a specific value
+    /** Write a native query to read all accounts with an age higher than a specific value */
+    @Query(nativeQuery = true, value = "SELECT * FROM account_details WHERE age > :age")
+    List<AccountDetails> fetchAllAgeHigher(int age);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM account_details WHERE age BETWEEN :age1 AND :age2")
+    List<AccountDetails> fetchAllAgeBetween(int age1,int age2);
 
 
 }

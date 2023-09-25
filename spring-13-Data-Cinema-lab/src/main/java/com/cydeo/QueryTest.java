@@ -24,6 +24,10 @@ public class QueryTest implements CommandLineRunner {
 
         System.out.println("*********** accountRepository JPQL Query *************************");
         System.out.println("retrieveAllAccounts" + accountRepository.retrieveAllAccounts());
+        System.out.println("*********** accountRepository native Query *************************");
+        System.out.println("fetchAllContainsNameAddressCountryState" + accountRepository.fetchAllContainsNameAddressCountryState1("tuc"));
+        System.out.println("fetchAllAgeHigher" + accountRepository.fetchAllAgeHigher(35));
+        System.out.println("fetchAllAgeBetween" + accountRepository.fetchAllAgeBetween(25,35));
 
     }
 }
