@@ -2,6 +2,7 @@ package com.cydeo.Repository;
 
 import com.cydeo.entity.Cinema;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
 
     // ------------------- JPQL QUERIES ------------------- //
 
-    //Write a JPQL query to read the cinema name with a specific id
+    /** Write a JPQL query to read the cinema name with a specific id */
+    @Query("SELECT c FROM Cinema c WHERE c.id = ?1")
+    Cinema fetchCinemaNameById(Integer id);
 
 
     // ------------------- Native QUERIES ------------------- //
