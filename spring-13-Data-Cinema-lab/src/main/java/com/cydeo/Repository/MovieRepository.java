@@ -37,6 +37,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     /** Write a derived query to list all movies with a specific state and type */
     List<Movie> findAllByStateAndType(MovieState state, MovieType type);
 
+    /** Write a native query to list the top 5 most expensive movies */
+    List<Movie> findFirst5ByOrderByPriceDesc();
+
 
     // ------------------- JPQL QUERIES ------------------- //
 
@@ -52,16 +55,24 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     // ------------------- Native QUERIES ------------------- //
 
-    //Write a native query that returns a movie by name
+    /** Write a native query that returns a movie by name */
+    @Query(nativeQuery = true, value = "SELECT * FROM movie WHERE name = ?1")
+    Movie retrieveMovieByName(String name);
 
 
-    //Write a native query that return the list of movies in a specific range of prices
+    /** Write a native query that return the list of movies in a specific range of prices */
+    @Query(nativeQuery = true,value = "SELECT * FROM movie WHERE price BETWEEN ?1 AND ?2")
+    List<Movie> retrieveAllPriceBetween(BigDecimal low, BigDecimal high);
 
 
-    //Write a native query to return all movies where duration exists in the range of duration
+    /** Write a native query to return all movies where duration exists in the range of duration */
+    @Query(nativeQuery = true, value = "SELECT * FROM movie WHERE duration IN ?1")
+    List<Movie> retrieveAllDurationIn(List<Integer> duration);
 
 
-    //Write a native query to list the top 5 most expensive movies
+    /** Write a native query to list the top 5 most expensive movies */
+    @Query(nativeQuery = true, value = "SELECT * FROM movie ORDER BY price DESC LIMIT 5")
+    List<Movie> retrieveTop5Expensive();
 
 
 }
