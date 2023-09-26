@@ -33,5 +33,12 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("fetchAllCinemaByLocationName" + cinemaRepository.fetchAllCinemaByLocationName("AMC Village 7"));
         System.out.println("retrieveAllCinemaByLocationName" + cinemaRepository.retrieveAllCinemaByLocationName("AMC Village 7"));
 
+        System.out.println("*********** genreRepository derived Query *************************");
+        System.out.println("findAll" + genreRepository.findAll());
+        System.out.println("fetchAllGenre" + genreRepository.fetchAllGenre());
+        System.out.println("retrieveAllNameContains" + genreRepository.retrieveAllNameContains("c"));
+        System.out.println("fetchAllNameContains" + genreRepository.fetchAllNameContains("c"));
+
+
     }
 }
