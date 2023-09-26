@@ -53,5 +53,10 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("findFirst5ByOrderByPriceDesc: " + movieRepository.findFirst5ByOrderByPriceDesc());
         System.out.println("retrieveTop5Expensive: " + movieRepository.retrieveTop5Expensive());
 
+        System.out.println("*********** Ticket Query *************************");
+
+        System.out.println("countAllByMovieCinema_Movie_Name: " + ticketRepository.countAllByMovieCinema_Movie_Name("Tenet"));
+
+
     }
 }

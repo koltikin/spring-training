@@ -1,12 +1,14 @@
 package com.cydeo.Repository;
 
 import com.cydeo.entity.Ticket;
+import com.cydeo.entity.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,16 +17,20 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     // ------------------- DERIVED QUERIES ------------------- //
 
-    //Write a derived query to count how many tickets a user bought
+    /** Write a derived query to count how many tickets a user bought */
+    int countAllByUserAccountId(Long id);
 
 
-    //Write a derived query to list all tickets by specific email
+    /** Write a derived query to list all tickets by specific email */
+    List<Ticket> findAllByUserAccount_Email(String email);
 
 
-    //Write a derived query to count how many tickets are sold for a specific movie
+    /** Write a derived query to count how many tickets are sold for a specific movie */
+    int countAllByMovieCinema_Movie_Name(String name);
 
 
-    //Write a derived query to list all tickets between a range of dates
+    /** Write a derived query to list all tickets between a range of dates */
+    List<Ticket> findAllByDateTimeBetween(LocalDateTime startDate, LocalDateTime endDate);
 
 
     // ------------------- JPQL QUERIES ------------------- //
