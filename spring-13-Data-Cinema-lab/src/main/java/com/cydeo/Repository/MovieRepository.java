@@ -4,6 +4,8 @@ import com.cydeo.entity.Movie;
 import com.cydeo.enums.MovieState;
 import com.cydeo.enums.MovieType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -38,10 +40,15 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     // ------------------- JPQL QUERIES ------------------- //
 
-    //Write a JPQL query to list all movies between a range of prices
+    /** Write a JPQL query to list all movies between a range of prices */
+//    @Query("SELECT m FROM Movie m WHERE m.price BETWEEN :low AND :high")
+//    List<Movie> fetchAllPriceBetween(BigDecimal low, BigDecimal high);
+    @Query("SELECT m FROM Movie m WHERE m.price BETWEEN ?1 AND ?2")
+    List<Movie> fetchAllPriceBetween(BigDecimal low, BigDecimal high);
 
-
-    //Write a JPQL query that returns all movie names
+    /** Write a JPQL query that returns all movie names */
+    @Query("SELECT m.name FROM Movie m")
+    List<String> fetchAllMovieNames();
 
     // ------------------- Native QUERIES ------------------- //
 

@@ -49,6 +49,7 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("*********** Movie Query *************************");
 
         System.out.println("findAllByPriceBetween: " + movieRepository.findAllByPriceBetween(BigDecimal.valueOf(15), BigDecimal.valueOf(20)));
+        System.out.println("fetchAllPriceBetween: " + movieRepository.fetchAllPriceBetween(BigDecimal.valueOf(15), BigDecimal.valueOf(20)));
 
     }
 }
