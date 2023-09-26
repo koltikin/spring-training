@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+
 @Component
 @AllArgsConstructor
 public class QueryTest implements CommandLineRunner {
@@ -44,6 +46,9 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("findByMovie_NameContains: " + movieCinemaRepository.findByMovie_NameContains("The"));
         System.out.println("fetchAllByLocationName: " + movieCinemaRepository.fetchAllByLocationName("AMC Empire 25"));
 
+        System.out.println("*********** Movie Query *************************");
+
+        System.out.println("findAllByPriceBetween: " + movieRepository.findAllByPriceBetween(BigDecimal.valueOf(15), BigDecimal.valueOf(20)));
 
     }
 }
