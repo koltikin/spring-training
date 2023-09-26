@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -52,6 +53,20 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("fetchAllPriceBetween: " + movieRepository.fetchAllPriceBetween(BigDecimal.valueOf(15), BigDecimal.valueOf(20)));
         System.out.println("findFirst5ByOrderByPriceDesc: " + movieRepository.findFirst5ByOrderByPriceDesc());
         System.out.println("retrieveTop5Expensive: " + movieRepository.retrieveTop5Expensive());
+
+        System.out.println("*********** Ticket Query *************************");
+
+        System.out.println("countAllByMovieCinema_Movie_Name: " + ticketRepository.countAllByMovieCinema_Movie_Name("Tenet"));
+        System.out.println("fetchAllTicketsBetweenDate: " + ticketRepository.fetchAllTicketsBetweenDate(LocalDateTime.of(2020, 12, 5, 20, 00, 00, 0),
+                LocalDateTime.of(2020, 12, 6, 20, 45, 00, 0)));
+        System.out.println("distinctAllTicketsByMovieName: " + ticketRepository.distinctAllTicketsByMovieName("Tenet"));
+        System.out.println("findAllTicketsByUserEmail: " + ticketRepository.findAllTicketsByUserEmail("faith.p@email.com"));
+
+        System.out.println("*********** UserAccount Query *************************");
+
+        System.out.println("findAllByAccountDetails_AgeGreaterThan: " + userRepository.findAllByAccountDetails_AgeGreaterThan(46));
+        System.out.println("getAllUser: " + userRepository.getAllUser());
+        System.out.println("getUserByEmail: " + userRepository.getUserByEmail("johnnie@email.com"));
 
     }
 }

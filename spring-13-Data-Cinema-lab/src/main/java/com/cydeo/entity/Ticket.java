@@ -17,11 +17,11 @@ public class Ticket extends BaseEntity {
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime dateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "movie_cinema_id")
     private MovieCinema movieCinema;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_account_id")
     private UserAccount userAccount;
 }
