@@ -42,6 +42,7 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("*********** MovieCinema derived Query *************************");
         System.out.println("countAllByCinemaId: " + movieCinemaRepository.countAllByCinemaId(1));
         System.out.println("findByMovie_NameContains: " + movieCinemaRepository.findByMovie_NameContains("The"));
+        System.out.println("fetchAllByLocationName: " + movieCinemaRepository.fetchAllByLocationName("AMC Empire 25"));
 
 
     }

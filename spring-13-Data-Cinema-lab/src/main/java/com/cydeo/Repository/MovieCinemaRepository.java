@@ -3,8 +3,10 @@ package com.cydeo.Repository;
 import com.cydeo.entity.MovieCinema;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -39,14 +41,22 @@ public interface MovieCinemaRepository extends JpaRepository<MovieCinema, Long> 
     // ------------------- JPQL QUERIES ------------------- //
 
     /** Write a JPQL query to list all movie cinemas with higher than a specific date */
+    @Query("SELECT mc FROM MovieCinema mc WHERE mc.dateTime > :date ")
+    List<MovieCinema> fetchAllBeforeDate(LocalDate date);
 
+    /** Write a native query that returns all movie cinemas by location name */
+    @Query("SELECT mc FROM MovieCinema mc WHERE mc.cinema.location.name = :name")
+    List<MovieCinema> fetchAllByLocationName(String name);
 
-    // ------------------- Native QUERIES ------------------- //
+    /**  ------------------- Native QUERIES ------------------- // */
 
-    //Write a native query to count all movie cinemas by cinema id
+    /** Write a native query to count all movie cinemas by cinema id */
+    @Query(nativeQuery = true, value = "SELECT count(*) FROM movie_cinema WHERE cinema_id = ?1")
+    List<MovieCinema> countAllByCinemaID(Long id);
 
-
-    //Write a native query that returns all movie cinemas by location name
-
+    /** Write a native query that returns all movie cinemas by location name */
+    @Query(nativeQuery = true, value = "SELECT * FROM movie_cinema mc Join cinema c ON mc.cinema_id = c.cinema_id" +
+    " JOIN location l ON l.location_id = c.location_id WHERE l.name = :name")
+    List<MovieCinema> retrieveAllByLocationName(String name);
 
 }
