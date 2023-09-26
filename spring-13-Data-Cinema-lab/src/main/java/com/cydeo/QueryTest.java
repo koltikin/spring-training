@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Component
 @AllArgsConstructor
@@ -56,6 +57,10 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("*********** Ticket Query *************************");
 
         System.out.println("countAllByMovieCinema_Movie_Name: " + ticketRepository.countAllByMovieCinema_Movie_Name("Tenet"));
+        System.out.println("fetchAllTicketsBetweenDate: " + ticketRepository.fetchAllTicketsBetweenDate(LocalDateTime.of(2020, 12, 5, 20, 00, 00, 0),
+                LocalDateTime.of(2020, 12, 6, 20, 45, 00, 0)));
+        System.out.println("distinctAllTicketsByMovieName: " + ticketRepository.distinctAllTicketsByMovieName("Tenet"));
+        System.out.println("findAllTicketsByUserEmail: " + ticketRepository.findAllTicketsByUserEmail("faith.p@email.com"));
 
 
     }
