@@ -2,6 +2,7 @@ package com.cydeo.Repository;
 
 import com.cydeo.entity.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 
 import java.util.List;
@@ -32,13 +33,19 @@ public interface UserRepository extends JpaRepository<UserAccount, Long> {
 
     // ------------------- JPQL QUERIES ------------------- //
 
-    //Write a JPQL query that returns a user read by email?
+    /** Write a JPQL query that returns a user read by email? */
+    @Query("SELECT ua FROM UserAccount ua WHERE ua.email = ?1")
+    UserAccount fetchUserByEmail(String email);
 
 
-    //Write a JPQL query that returns a user read by username?
+    /** Write a JPQL query that returns a user read by username? */
+    @Query("SELECT ua FROM UserAccount ua WHERE ua.username = :name")
+    UserAccount fetchUserByUserName(String name);
 
 
-    //Write a JPQL query that returns all users?
+    /** Write a JPQL query that returns all users? */
+    @Query("select ua FROM UserAccount ua")
+    List<UserAccount> getAllUser();
 
 
     // ------------------- Native QUERIES ------------------- //
