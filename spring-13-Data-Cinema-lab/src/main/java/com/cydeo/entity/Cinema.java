@@ -13,7 +13,7 @@ public class Cinema extends BaseEntity{
     private String name;
     private String sponsoredName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "location_id")
     private Location location;
 }
