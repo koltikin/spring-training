@@ -35,10 +35,14 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     // ------------------- JPQL QUERIES ------------------- //
 
-    //Write a JPQL query that returns all tickets are bought from a specific user
+    /** Write a JPQL query that returns all tickets are bought from a specific user */
+    @Query("SELECT t FROM Ticket t WHERE t.userAccount.id = ?1")
+    List<Ticket> fetchAllTicketsUserHave(Long userId);
 
 
-    //Write a JPQL query that returns all tickets between a range of dates
+    /** Write a JPQL query that returns all tickets between a range of dates */
+    @Query("SELECT t FROM Ticket t WHERE t.dateTime BETWEEN ?1 And ?2")
+    List<Ticket> fetchAllTicketsBetweenDate(LocalDate startDate,LocalDate endDate);
 
     // ------------------- Native QUERIES ------------------- //
 
