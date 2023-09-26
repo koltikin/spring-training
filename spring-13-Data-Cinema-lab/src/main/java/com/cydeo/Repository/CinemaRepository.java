@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Optional;
 
 
@@ -15,8 +16,8 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
     // ------------------- DERIVED QUERIES ------------------- //
 
     /** Write a derived query to get cinema with a specific name */
-    Cinema findByName(String name);
-    Optional<Cinema> findBy(String name);
+//    Cinema findByName(String name);
+    Optional<Cinema> findByName(String name);
 
 
     /** Write a derived query to read sorted the top 3 cinemas that contains a specific sponsored name */
@@ -35,19 +36,42 @@ public interface CinemaRepository extends JpaRepository<Cinema, Long> {
     @Query("SELECT c FROM Cinema c WHERE c.id = ?1")
     Cinema fetchCinemaNameById(Integer id);
 
+    /** Write a native query to read all cinemas by location country */
+    @Query("SELECT c FROM Cinema c WHERE c.location.name = :name")
+    List<Cinema> fetchAllCinemaByLocationName(String name);
+
+    /** Write a native query to distinct all cinemas by sponsored name */
+    @Query("SELECT c FROM Cinema c WHERE" +
+            " c.sponsoredName IN (SELECT DISTINCT(c.sponsoredName) FROM Cinema)")
+    List<Cinema> fetchDistinctBySponsoredName();
+
 
     // ------------------- Native QUERIES ------------------- //
 
-    //Write a native query to read all cinemas by location country
+    /** Write a native query to read all cinemas by location country */
+    @Query(nativeQuery = true, value = "SELECT * FROM Cinema c JOIN location l" +
+    " ON l.location_id = c.location_id WHERE country = :country")
+    List<Cinema> retrieveAllCinemaByCountry(String country);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM Cinema c JOIN location l" +
+            " ON l.location_id = c.location_id WHERE l.name = ?1")
+    List<Cinema> retrieveAllCinemaByLocationName(String name);
+
+    /** Write a native query to read all cinemas by name or sponsored name contains a specific pattern */
+    @Query(nativeQuery = true,value = "SELECT * FROM cinema WHERE name ILIKE concat('%', :value, '%')" +
+            " OR sponsored_name ILIKE concat('%' :value '%') ")
+    List<Cinema> retrieveAllCinemaByNameOrSponsoredName(String value);
+
+    /** Write a native query to sort all cinemas by name */
+    @Query(nativeQuery = true, value = "SELECT * FROM cinema ORDER BY name")
+    List<Cinema> retrieveAllCinemaSortByName();
 
 
-    //Write a native query to read all cinemas by name or sponsored name contains a specific pattern
 
-
-    //Write a native query to sort all cinemas by name
-
-
-    //Write a native query to distinct all cinemas by sponsored name
+    /** Write a native query to distinct all cinemas by sponsored name */
+    @Query(nativeQuery = true, value = "SELECT * FROM cinema WHERE" +
+            " sponsored_name IN (SELECT DISTINCT(sponsored_name) FROM cinema)")
+    List<Cinema> distinctBySponsoredName();
 
 
 }

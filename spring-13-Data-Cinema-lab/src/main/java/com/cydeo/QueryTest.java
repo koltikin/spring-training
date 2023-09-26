@@ -28,6 +28,10 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("fetchAllContainsNameAddressCountryState" + accountRepository.fetchAllContainsNameAddressCountryState1("tuc"));
         System.out.println("fetchAllAgeHigher" + accountRepository.fetchAllAgeHigher(35));
         System.out.println("fetchAllAgeBetween" + accountRepository.fetchAllAgeBetween(25,35));
+        System.out.println("*********** cinemaRepository Native QUERIES *************************");
+        System.out.println("retrieveAllCinemaByCountry" + cinemaRepository.retrieveAllCinemaByCountry("United States"));
+        System.out.println("fetchAllCinemaByLocationName" + cinemaRepository.fetchAllCinemaByLocationName("AMC Village 7"));
+        System.out.println("retrieveAllCinemaByLocationName" + cinemaRepository.retrieveAllCinemaByLocationName("AMC Village 7"));
 
     }
 }
