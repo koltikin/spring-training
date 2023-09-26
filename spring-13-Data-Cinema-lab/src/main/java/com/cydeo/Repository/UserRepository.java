@@ -11,20 +11,24 @@ public interface UserRepository extends JpaRepository<UserAccount, Long> {
 
     // ------------------- DERIVED QUERIES ------------------- //
 
-    //Write a derived query to read a user with an email?
+    /** Write a derived query to read a user with an email? */
+    UserAccount findByEmail(String emil);
 
 
-    //Write a derived query to read a user with a username?
+    /** Write a derived query to read a user with a username? */
+    UserAccount findByUsername(String userName);
 
 
-    //Write a derived query to list all users that contain a specific name?
+    /** Write a derived query to list all users that contain a specific name? */
+    List<UserAccount> findAllByUsernameContains(String pattern);
 
 
-    //Write a derived query to list all users that contain a specific name in the ignore case mode?
+    /** Write a derived query to list all users that contain a specific name in the ignore case mode? */
+    List<UserAccount> findAllByUsernameIgnoreCase(String userName);
 
 
-    //Write a derived query to list all users with an age greater than a specified age?
-
+    /** Write a derived query to list all users with an age greater than a specified age? */
+    List<UserAccount> findAllByAccountDetails_AgeGreaterThan(int age);
 
     // ------------------- JPQL QUERIES ------------------- //
 

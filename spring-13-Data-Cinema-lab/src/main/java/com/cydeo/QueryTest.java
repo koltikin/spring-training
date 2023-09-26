@@ -62,6 +62,9 @@ public class QueryTest implements CommandLineRunner {
         System.out.println("distinctAllTicketsByMovieName: " + ticketRepository.distinctAllTicketsByMovieName("Tenet"));
         System.out.println("findAllTicketsByUserEmail: " + ticketRepository.findAllTicketsByUserEmail("faith.p@email.com"));
 
+        System.out.println("*********** UserAccount Query *************************");
+
+        System.out.println(userRepository.findAllByAccountDetails_AgeGreaterThan(46));
 
     }
 }
