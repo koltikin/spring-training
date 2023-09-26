@@ -64,7 +64,9 @@ public class QueryTest implements CommandLineRunner {
 
         System.out.println("*********** UserAccount Query *************************");
 
-        System.out.println(userRepository.findAllByAccountDetails_AgeGreaterThan(46));
+        System.out.println("findAllByAccountDetails_AgeGreaterThan: " + userRepository.findAllByAccountDetails_AgeGreaterThan(46));
+        System.out.println("getAllUser: " + userRepository.getAllUser());
+        System.out.println("getUserByEmail: " + userRepository.getUserByEmail("johnnie@email.com"));
 
     }
 }

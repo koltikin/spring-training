@@ -50,15 +50,25 @@ public interface UserRepository extends JpaRepository<UserAccount, Long> {
 
     // ------------------- Native QUERIES ------------------- //
 
-    //Write a native query that returns all users that contain a specific name?
+    /** Write a native query that returns all users that contain a specific name? */
+    @Query(nativeQuery = true, value = "SELECT * FROM user_account WHERE username ILIKE concat('%', ?1, '%')")
+    List<UserAccount> getUserByNameContains(String name);
 
 
-    //Write a native query that returns all users?
+    /** Write a native query that returns all users? */
 
-    //Write a native query that returns all users in the range of ages?
+    @Query(nativeQuery = true, value = "SELECT * FROM user_account")
+    List<UserAccount> readAllUser();
+
+    /** Write a native query that returns all users in the range of ages? */
+    @Query(nativeQuery = true, value = "SELECT ua.* FROM user_account ua JOIN account_details ad" +
+            " ON ua.account_details_id = ad.account_details_id WHERE ad.age BETWEEN ?1 AND ?2")
+    List<UserAccount> readAllUserAgeBetween(int low, int high);
 
 
-    //Write a native query to read a user by email?
+    /** Write a native query to read a user by email? */
+    @Query(nativeQuery = true, value = "SELECT * FROM user_account WHERE email = ?1")
+    UserAccount getUserByEmail(String email);
 
 
 }
