@@ -33,7 +33,7 @@ public class Movie extends BaseEntity{
     @Column(columnDefinition = "text")
     private String summary;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "movie_genre_rel",
     joinColumns = @JoinColumn(name = "movie_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))

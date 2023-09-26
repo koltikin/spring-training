@@ -1,13 +1,13 @@
 package com.cydeo.entity;
 
 import com.cydeo.enums.UserRole;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AttributeOverride(name = "id", column = @Column(name = "account_details_id"))
 public class AccountDetails extends BaseEntity{
@@ -25,4 +25,18 @@ public class AccountDetails extends BaseEntity{
 
     @OneToOne(mappedBy = "accountDetails")
     private UserAccount userAccount;
+
+    @Override
+    public String toString() {
+        return "AccountDetails{" +
+                "name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", age=" + age +
+                ", postalCode='" + postalCode + '\'' +
+                ", role=" + role +
+                "} " + super.toString();
+    }
 }

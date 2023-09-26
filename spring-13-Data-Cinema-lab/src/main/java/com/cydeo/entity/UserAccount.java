@@ -15,7 +15,7 @@ public class UserAccount extends BaseEntity{
     private String password;
     private String username;
 
-    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.MERGE,CascadeType.PERSIST},fetch = FetchType.EAGER)
     @JoinColumn(name = "account_details_id")
     private AccountDetails accountDetails;
 }
