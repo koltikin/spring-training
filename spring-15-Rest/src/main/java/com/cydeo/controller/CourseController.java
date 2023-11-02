@@ -3,10 +3,7 @@ package com.cydeo.controller;
 import com.cydeo.dto.CourseDTO;
 import com.cydeo.service.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +27,12 @@ public class CourseController {
         return courseService.getCoursesByCategory(category);
 
     }
+
+    @PostMapping("/create")
+    public CourseDTO createCourse(@RequestBody CourseDTO course){
+        return courseService.createCourse(course);
+    }
+
+
+
 }
