@@ -1,9 +1,14 @@
 package com.cydeo.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
-import java.net.http.HttpResponse;
 
+@NoArgsConstructor
+@Getter
+@Setter
 public class ResponseWrapper {
     private boolean success;
     private String message;
