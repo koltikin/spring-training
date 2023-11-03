@@ -1,31 +1,26 @@
 package com.cydeo.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.http.HttpStatus;
 
-@Getter
-@Setter
-@NoArgsConstructor
-public class ResponseWrapper {
+import java.net.http.HttpResponse;
 
+public class ResponseWrapper {
     private boolean success;
     private String message;
-    private Integer code;
+    private Integer statusCode;
     private Object data;
 
-    public ResponseWrapper(String message,Object data){
+    public ResponseWrapper(String message, Object data) {
         this.message = message;
-        this.data=data;
-        this.code= HttpStatus.OK.value();
-        this.success=true;
+        this.data = data;
+        this.statusCode = HttpStatus.OK.value();
+        this.success = true;
     }
 
-    public ResponseWrapper(String message){
-        this.message=message;
-        this.code=HttpStatus.OK.value();
-        this.success=true;
+    public ResponseWrapper(String message) {
+        this.message = message;
+        this.statusCode = HttpStatus.OK.value();
+        this.success = true;
     }
 
 }
