@@ -1,4 +1,4 @@
-package com.cydeo;
+package com.cydeo.controller;
 
 import com.cydeo.dto.User;
 import lombok.RequiredArgsConstructor;
