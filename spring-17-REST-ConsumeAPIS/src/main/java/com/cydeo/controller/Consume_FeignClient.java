@@ -17,4 +17,5 @@ public class Consume_FeignClient {
     public ResponseEntity<ResponseWrapper> getAllUsers(){
         return ResponseEntity.ok((new ResponseWrapper("User List Retrieved", userClient.getUsers())));
     }
+
 }
