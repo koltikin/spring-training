@@ -10,5 +10,5 @@ import java.util.List;
 @FeignClient(url = "https://dummyapi.io",name = "EMPLOYEE-CLIENT")
 public interface EmployeeClient {
     @GetMapping("/data/v1/user?limit=10")
-    List<Employee> getTenEmployee(@RequestHeader("app-id") String id);
+    Employee getTenEmployee(@RequestHeader("app-id") String id);
 }
