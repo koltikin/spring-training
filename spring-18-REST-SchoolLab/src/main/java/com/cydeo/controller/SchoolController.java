@@ -3,6 +3,7 @@ package com.cydeo.controller;
 import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.dto.StudentDTO;
 import com.cydeo.dto.TeacherDTO;
+import com.cydeo.service.ParentService;
 import com.cydeo.service.StudentService;
 import com.cydeo.service.TeacherService;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1")
 public class SchoolController {
     private final TeacherService teacherService;
     private final StudentService studentService;
+    private final ParentService parentService;
 
     @GetMapping("/teachers")
     public List<TeacherDTO> getAllTeachers(){
@@ -36,4 +40,30 @@ public class SchoolController {
                         studentService.findAll()));
 
     }
+
+//    @GetMapping("/parents")
+//    public ResponseEntity<ResponseWrapper> getAllParents(){
+//        return ResponseEntity
+//                .status(HttpStatus.ACCEPTED)
+//                .header("version","School.v1")
+//                .header("operation", "retrieve all parents")
+//                .body(new ResponseWrapper("Parents are retrieved successfully",parentService.findAll()));
+//
+//    }
+
+    @GetMapping("/parents")
+    public ResponseEntity<ResponseWrapper> getAllParents(){
+        ResponseWrapper response = new ResponseWrapper(
+                true,"parents are successfully retrieved",
+                HttpStatus.ACCEPTED, HttpStatus.ACCEPTED.value(),parentService.findAll()
+        );
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+
+    }
+
+
+
+
+
+
 }
