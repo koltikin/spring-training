@@ -23,9 +23,9 @@ public class WeatherDTO {
     @JsonProperty("request")
     private RequestDTO request;
     @JsonProperty("location")
-    private Location location;
+    private LocationDTO location;
     @JsonProperty("current")
-    private Current current;
+    private CurrentDTO current;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
@@ -40,22 +40,22 @@ public class WeatherDTO {
     }
 
     @JsonProperty("location")
-    public Location getLocation() {
+    public LocationDTO getLocation() {
         return location;
     }
 
     @JsonProperty("location")
-    public void setLocation(Location location) {
+    public void setLocation(LocationDTO location) {
         this.location = location;
     }
 
     @JsonProperty("current")
-    public Current getCurrent() {
+    public CurrentDTO getCurrent() {
         return current;
     }
 
     @JsonProperty("current")
-    public void setCurrent(Current current) {
+    public void setCurrent(CurrentDTO current) {
         this.current = current;
     }
 
