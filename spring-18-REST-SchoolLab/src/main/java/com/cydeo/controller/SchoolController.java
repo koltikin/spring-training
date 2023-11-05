@@ -1,5 +1,6 @@
 package com.cydeo.controller;
 
+import com.cydeo.dto.AddressDTO;
 import com.cydeo.dto.ResponseWrapper;
 import com.cydeo.dto.StudentDTO;
 import com.cydeo.dto.TeacherDTO;
@@ -12,10 +13,7 @@ import lombok.SneakyThrows;
 import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +72,13 @@ public class SchoolController {
                 .body(new ResponseWrapper("Address retrieved by id", addressService.findById(addressId) ));
     }
 
+    @PutMapping("address/{id}")
+    public ResponseEntity<ResponseWrapper> updateAddress(@PathVariable("id") Long addressId,
+                                                         @RequestBody AddressDTO addressDTO) throws Exception {
+        addressDTO.setId(addressId);
+        return ResponseEntity.ok(new ResponseWrapper("address with id "+addressId+" is updated",
+                addressService.update(addressDTO)));
+    }
 
 
 
