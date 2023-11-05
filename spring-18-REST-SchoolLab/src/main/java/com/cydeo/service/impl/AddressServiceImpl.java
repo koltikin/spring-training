@@ -1,12 +1,10 @@
 package com.cydeo.service.impl;
 
 import com.cydeo.dto.AddressDTO;
-import com.cydeo.dto.WeatherDTO;
 import com.cydeo.entity.Address;
 import com.cydeo.util.MapperUtil;
 import com.cydeo.repository.AddressRepository;
 import com.cydeo.service.AddressService;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
