@@ -8,11 +8,9 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(value = {"address", "country"}, ignoreUnknown = true)
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"address", "country"}, ignoreUnknown = true)
 public class AccountDTO {
 
-    @JsonIgnore
     private String name;
     private String address;
     private String country;
@@ -21,7 +19,8 @@ public class AccountDTO {
     private Integer age;
     private String postalCode;
 
-    @JsonBackReference  // This field is not going to be serialized
-    private UserDTO user;
+    @JsonBackReference  // this field is not going to be serialized;
+    @JsonIgnore
+    private UserDTO user;  // we don't see this field inside Account in jason format
 
 }
