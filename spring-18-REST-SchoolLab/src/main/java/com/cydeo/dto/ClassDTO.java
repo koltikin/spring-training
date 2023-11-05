@@ -1,6 +1,7 @@
 
 package com.cydeo.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.Setter;
 @JsonInclude(JsonInclude.Include.NON_NULL) // if the field is null json didn't show that one
 public class ClassDTO {
 
+    @JsonIgnore
     private Long id;
 
     private String name;

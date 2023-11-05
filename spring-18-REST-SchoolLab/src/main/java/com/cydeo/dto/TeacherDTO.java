@@ -2,6 +2,7 @@ package com.cydeo.dto;
 
 import com.cydeo.enums.EducationLevel;
 import com.cydeo.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 @JsonInclude(JsonInclude.Include.NON_NULL) // if the field is null json didn't show that one
 public class TeacherDTO {
 
+    @JsonIgnore
     private Long id;
 
     private String firstName;
