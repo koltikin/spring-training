@@ -5,6 +5,7 @@ import com.cydeo.entity.Address;
 import com.cydeo.util.MapperUtil;
 import com.cydeo.repository.AddressRepository;
 import com.cydeo.service.AddressService;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,7 @@ public class AddressServiceImpl implements AddressService {
                 .map(address -> mapperUtil.convert(address, new AddressDTO()))
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public AddressDTO findById(Long id) throws Exception {
