@@ -2,21 +2,18 @@ package com.cydeo.controller;
 
 import com.cydeo.dto.AddressDTO;
 import com.cydeo.dto.ResponseWrapper;
-import com.cydeo.dto.StudentDTO;
 import com.cydeo.dto.TeacherDTO;
 import com.cydeo.service.AddressService;
 import com.cydeo.service.ParentService;
 import com.cydeo.service.StudentService;
 import com.cydeo.service.TeacherService;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @RestController
