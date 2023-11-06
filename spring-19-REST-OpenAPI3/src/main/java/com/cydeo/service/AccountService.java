@@ -9,5 +9,6 @@ public interface AccountService {
     List<AccountDTO> getAccounts();
 
     AccountDTO getById(Long id) throws Exception;
+    AccountDTO save(AccountDTO accountDTO);
 
 }

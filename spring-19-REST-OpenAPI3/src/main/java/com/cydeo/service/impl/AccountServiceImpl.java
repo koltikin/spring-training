@@ -1,6 +1,7 @@
 package com.cydeo.service.impl;
 
 import com.cydeo.dto.AccountDTO;
+import com.cydeo.entity.Account;
 import com.cydeo.repository.AccountRepository;
 import com.cydeo.service.AccountService;
 import com.cydeo.util.MapperUtil;
@@ -28,6 +29,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDTO getById(Long id) throws Exception {
         return mapperUtil.convert(accountRepository.findById(id).orElseThrow(() -> new Exception("Account not found")), new AccountDTO());
+    }
+
+    @Override
+    public AccountDTO save(AccountDTO accountDTO) {
+        accountRepository.save(mapperUtil.convert(accountDTO, new Account()));
+        return accountDTO;
     }
 
 }
