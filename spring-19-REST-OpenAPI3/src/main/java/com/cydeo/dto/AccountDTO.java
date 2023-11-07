@@ -10,11 +10,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//@JsonIgnoreProperties(value = {"address", "country"}, ignoreUnknown = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AccountDTO {
 
-    @JsonIgnore
     private String name;
     private String address;
     private String country;
