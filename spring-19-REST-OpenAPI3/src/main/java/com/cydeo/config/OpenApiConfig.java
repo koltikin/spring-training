@@ -1,8 +1,5 @@
 package com.cydeo.config;
 
-import com.cydeo.dto.UserDTO;
-import com.cydeo.entity.User;
-import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
