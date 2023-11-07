@@ -22,10 +22,4 @@ public class Spring19RestOpenApi3Application {
         return new ModelMapper();
     }
 
-//    @Bean
-//    public OpenAPI customOpenApi() {
-//        return new OpenAPI().info(new Info().title("Cydeo Application OpenAPI").version("v2")
-//                .description("Cydeo application documentation"))
-//                .servers(List.of(new Server().url("https://dev.cydeo.com").description("Dev Environment")));
-//    }
 }
