@@ -6,6 +6,7 @@ import com.cydeo.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -41,9 +42,9 @@ public class AccountController {
     }
 
     @PostMapping
-    @ApiResponse(responseCode = "201",
-            description = "successful response",
-            content = @Content(mediaType = "application/json"))
+//    @ApiResponse(responseCode = "201",
+//            description = "successful response",
+//            content = @Content(mediaType = "application/json"))
     @Operation(summary = "Create an Account")
     public ResponseEntity<ResponseWrapper> createAccount(@RequestBody AccountDTO accountDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
