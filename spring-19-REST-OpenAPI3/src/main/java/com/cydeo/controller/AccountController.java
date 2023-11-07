@@ -4,10 +4,7 @@ import com.cydeo.dto.AccountDTO;
 import com.cydeo.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,11 @@ public class AccountController {
     @GetMapping
     public ResponseEntity<AccountDTO> getById(@RequestParam("id") Long id) throws Exception {
         return ResponseEntity.ok(accountService.getById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<AccountDTO> createAccount(@RequestBody AccountDTO accountDTO) {
+        return ResponseEntity.ok(accountService.createAccount(accountDTO));
     }
 
 }

@@ -10,4 +10,5 @@ public interface UserService {
 
     UserDTO create(UserDTO userDTO);
 
+    void delete(long userId);
 }

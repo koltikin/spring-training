@@ -31,4 +31,10 @@ public class UserServiceImpl implements UserService {
         return mapperUtil.convert(userRepository.save(mapperUtil.convert(userDTO, new User())), new UserDTO());
     }
 
+    @Override
+    public void delete(long userId) {
+        userRepository.delete(userRepository.findById(userId).get());
+
+    }
+
 }
