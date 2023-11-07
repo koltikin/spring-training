@@ -11,4 +11,6 @@ public interface AccountService {
     AccountDTO getById(Long id) throws Exception;
 
     AccountDTO createAccount(AccountDTO accountDTO);
+
+    void deleteById(Long id);
 }

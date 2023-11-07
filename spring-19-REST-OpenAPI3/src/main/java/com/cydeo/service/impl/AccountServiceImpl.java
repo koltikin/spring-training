@@ -32,4 +32,9 @@ public class AccountServiceImpl implements AccountService {
         return accountDTO;
     }
 
+    @Override
+    public void deleteById(Long id) {
+        accountRepository.deleteById(id);
+
+    }
 }
