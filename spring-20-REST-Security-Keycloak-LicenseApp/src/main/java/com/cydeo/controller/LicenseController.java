@@ -2,6 +2,7 @@ package com.cydeo.controller;
 
 import com.cydeo.model.License;
 import com.cydeo.service.LicenseService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/v1/organization/{organizationId}/license")
+@RequiredArgsConstructor
 public class LicenseController {
 
     private final LicenseService licenseService;
-
-    public LicenseController(LicenseService licenseService) {
-        this.licenseService = licenseService;
-    }
 
     @GetMapping("/{licenseId}")
     public ResponseEntity<License> getLicense(@PathVariable("organizationId") Long organizationId, @PathVariable("licenseId") Long licenseId) throws Exception {
