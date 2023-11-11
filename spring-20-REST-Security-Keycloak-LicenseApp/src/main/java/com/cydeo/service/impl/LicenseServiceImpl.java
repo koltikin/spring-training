@@ -40,7 +40,7 @@ public class LicenseServiceImpl implements LicenseService {
     }
 
     private Organization retrieveOrganizationInfo(Long organizationId) {
-        return feignClient.getOrganization(organizationId);
+        return feignClient.getOrganizationById(organizationId);
     }
 
     public License createLicense(License license) {

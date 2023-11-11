@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface OrganizationFeignClient {
 
     @GetMapping("/{organizationId}")
-    Organization getOrganization(@PathVariable("organizationId") Long organizationId);
+    Organization getOrganizationById(@PathVariable("organizationId") Long organizationId);
 
 }
