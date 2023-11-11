@@ -19,19 +19,19 @@ public class OrganizationController {
     }
 
     @GetMapping("/{organizationId}")
-    @RolesAllowed({"ADMIN","USER"})
+    @RolesAllowed({"admin","user"})
     public ResponseEntity<Organization> getOrganization(@PathVariable("organizationId") Long organizationId) throws Exception {
         return ResponseEntity.ok(organizationService.findById(organizationId));
     }
 
     @PostMapping
-    @RolesAllowed({"ADMIN","USER"})
+    @RolesAllowed({"admin","user"})
     public ResponseEntity<Organization> createOrganization(@RequestBody Organization organization) {
         return ResponseEntity.status(HttpStatus.CREATED).body(organizationService.create(organization));
     }
 
     @DeleteMapping("/{organizationId}")
-    @RolesAllowed({"ADMIN"})
+    @RolesAllowed({"admin"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteOrganization(@PathVariable("organizationId") Long organizationId) {
         organizationService.delete(organizationId);

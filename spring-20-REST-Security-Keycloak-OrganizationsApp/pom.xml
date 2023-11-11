@@ -34,6 +34,8 @@
             <artifactId>keycloak-spring-boot-starter</artifactId>
             <version>22.0.1</version>
         </dependency>
+
+
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
