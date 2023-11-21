@@ -1,5 +1,6 @@
 package com.cydeo.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -12,13 +13,30 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
     Logger logger = LoggerFactory.getLogger(LoggingAspect.class);
 
-    @Pointcut("execution(* com.cydeo.controller.CourseController.*(..))")
-    public void myPointCut(){}
+//    @Pointcut("execution(* com.cydeo.controller.CourseController.*(..))")
+//    public void myPointCut(){}
+//
+//    @Before("myPointCut()")
+//    public void log(){
+//        logger.info("Info log...................");
+//    }
+//    @Before("execution(* com.cydeo.controller.CourseController.*(..))")
+//    public void log(){
+//        logger.info("Info log...................");
+//    }
+    @Pointcut("execution(* com.cydeo.repository.CourseRepository.findById(*))")
+    public void courseRepositoryFindByIdPC(){}
 
-    @Before("myPointCut()")
-    public void log(){
-        logger.info("Info log...................");
+    @Before("courseRepositoryFindByIdPC()")
+    public void beforeCourseRepositoryFindById(JoinPoint joinPoint){
+        logger.info("Before : Method:{}, Arguments: {}, Target: {}",
+                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
+    }
 
+    @Before("courseRepositoryFindByIdPC()")
+    public void beforeCourseFindById(JoinPoint joinPoint){
+        logger.info("Before : Method:{}, Arguments: {}, Target: {}",
+                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
     }
 
 }
