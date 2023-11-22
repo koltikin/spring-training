@@ -20,9 +20,9 @@ public class CourseController {
 
     @GetMapping
     public List<CourseDTO> getAllCourses() {
-        throw new RuntimeException("my custom exception");
-//        List<CourseDTO> list = courseService.getCourses();
-//        return list;
+//        throw new RuntimeException("my custom exception");
+        List<CourseDTO> list = courseService.getCourses();
+        return list;
     }
 
     @GetMapping("/{id}")

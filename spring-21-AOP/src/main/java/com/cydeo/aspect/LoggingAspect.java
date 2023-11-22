@@ -1,6 +1,7 @@
 package com.cydeo.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,8 +68,8 @@ public class LoggingAspect {
 //        logger.info("Before => Method:{}, Arguments: {}, Target: {}",
 //                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
 //    }
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void afterReturningGetMappingAnnotation(){}
+//    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+//    public void afterReturningGetMappingAnnotation(){}
 
 //    @AfterReturning(pointcut = "afterReturningGetMappingAnnotation()",returning = "result")
 //    public void afterReturningGetMappingOperation(JoinPoint joinPoint, Object result){
@@ -81,9 +82,30 @@ public class LoggingAspect {
 //        logger.info("After => Method:{}, Result: {}",
 //                joinPoint.getSignature(), result.toString());
 //    }
-    @AfterThrowing(pointcut = "afterReturningGetMappingAnnotation()",throwing = "exception")
-    public void afterThrowingGetMappingOperation(JoinPoint joinPoint, RuntimeException exception){
-        logger.info("After Throwing => Method:{}, Exception: {}",
-                joinPoint.getSignature().toShortString(), exception.getMessage());
+//    @AfterThrowing(pointcut = "afterReturningGetMappingAnnotation()",throwing = "exception")
+//    public void afterThrowingGetMappingOperation(JoinPoint joinPoint, RuntimeException exception){
+//        logger.info("After Throwing => Method:{}, Exception: {}",
+//                joinPoint.getSignature().toShortString(), exception.getMessage());
+//    }
+
+    @Pointcut("@annotation(com.cydeo.annotation.LoggingAnnotation)")
+    public void loggingAnnotationPC(){}
+
+    @Around("loggingAnnotationPC()")
+    public Object anyLoggingAnnotationOperation(ProceedingJoinPoint proceedingJoinPoint){
+        logger.info("Before-> Method : {}, Parameter : {}" ,
+                proceedingJoinPoint.getSignature().toShortString(), proceedingJoinPoint.getArgs());
+
+        Object result = null;
+        try {
+            result = proceedingJoinPoint.proceed();
+        }catch (Throwable throwable){
+            throwable.printStackTrace();
+        }
+        logger.info("After-> Method {} - Result : {}" ,
+                proceedingJoinPoint.getSignature().toShortString(), result.toString());
+        return result;
     }
+
+
 }
