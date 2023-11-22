@@ -1,12 +1,12 @@
 package com.cydeo.aspect;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -59,14 +59,31 @@ public class LoggingAspect {
 //        logger.info("Before => Method:{}, Arguments: {}, Target: {}",
 //                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
 //    }
-    @Pointcut("@annotation(com.cydeo.annotation.LoggingAnnotation)")
-    public void LoggingAnnotationPC(){}
+//    @Pointcut("@annotation(com.cydeo.annotation.LoggingAnnotation)")
+//    public void LoggingAnnotationPC(){}
+//
+//    @Before("LoggingAnnotationPC()")
+//    public void beforeDeleteMappingAnnotation(JoinPoint joinPoint) {
+//        logger.info("Before => Method:{}, Arguments: {}, Target: {}",
+//                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
+//    }
+    @Pointcut("@annotation(org.springframework.web.bind.annotation.GetMapping)")
+    public void afterReturningGetMappingAnnotation(){}
 
-    @Before("LoggingAnnotationPC()")
-    public void beforeDeleteMappingAnnotation(JoinPoint joinPoint) {
-        logger.info("Before => Method:{}, Arguments: {}, Target: {}",
-                joinPoint.getSignature(), joinPoint.getArgs(), joinPoint.getTarget());
-
-
+//    @AfterReturning(pointcut = "afterReturningGetMappingAnnotation()",returning = "result")
+//    public void afterReturningGetMappingOperation(JoinPoint joinPoint, Object result){
+//        logger.info("After => Method:{}, Result: {}",
+//                joinPoint.getSignature(), result.toString());
+//    }
+//
+//    @AfterReturning(pointcut = "afterReturningGetMappingAnnotation()",returning = "result")
+//    public void afterReturningGetMappingOperation(JoinPoint joinPoint, List<?> result){ //or we can use List<CourseDTO>
+//        logger.info("After => Method:{}, Result: {}",
+//                joinPoint.getSignature(), result.toString());
+//    }
+    @AfterThrowing(pointcut = "afterReturningGetMappingAnnotation()",throwing = "exception")
+    public void afterThrowingGetMappingOperation(JoinPoint joinPoint, RuntimeException exception){
+        logger.info("After Throwing => Method:{}, Exception: {}",
+                joinPoint.getSignature().toShortString(), exception.getMessage());
     }
 }
