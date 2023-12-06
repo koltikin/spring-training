@@ -41,4 +41,19 @@ public class CalculatorParameterizedTest {
     static String[] StringProvider(){
         return new String[]{"Java","JS","TS"};
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "10,20,30",
+            "5,45,50",
+            "100,20,130",
+    })
+    void testCase7(int num1, int num2, int result){
+        Assertions.assertEquals(result, Calculator.add(num1,num2));
+    }
+    @ParameterizedTest
+    @CsvFileSource(resources = "/sample-data.csv",numLinesToSkip = 1)
+    void testCase8(int num1, int num2, int result){
+        Assertions.assertEquals(result, Calculator.add(num1,num2));
+    }
 }
