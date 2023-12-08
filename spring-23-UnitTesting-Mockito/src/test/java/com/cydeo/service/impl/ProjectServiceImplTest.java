@@ -12,11 +12,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ProjectServiceImplTest {
@@ -46,6 +47,19 @@ class ProjectServiceImplTest {
 
         assertNotNull(projectDTO);
 
+    }
+
+    @Test
+    void getProjectCode_ExceptionTest(){
+        when(projectRepository.findByProjectCode("")).thenThrow(new NoSuchElementException("Project Not Found"));
+
+        Throwable throwable = assertThrows(NoSuchElementException.class,()->projectService.getByProjectCode(""));
+
+        verify(projectRepository).findByProjectCode("");
+
+        verify(projectMapper, never()).convertToDto(any(Project.class));
+
+        assertEquals("Project Not Found", throwable.getMessage());
     }
 
 }
