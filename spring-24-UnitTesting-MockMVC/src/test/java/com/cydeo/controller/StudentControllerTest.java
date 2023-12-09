@@ -1,5 +1,6 @@
 package com.cydeo.controller;
 
+import com.cydeo.dto.StudentDTO;
 import com.cydeo.service.StudentService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Arrays;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -38,7 +42,26 @@ public class StudentControllerTest {
         String actual = mvc.perform(MockMvcRequestBuilders.get("/student")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn().getResponse().getContentAsString();
-        JSONAssert.assertEquals(expected,actual,true);
+        JSONAssert.assertEquals(expected,actual,true); // if true it requires exactly the same
 
     }
+
+    @Test
+    void getStudents_Test() throws Exception {
+        when(studentService.getStudents()).thenReturn(Arrays.asList(
+                new StudentDTO("John","Doe",20),
+                new StudentDTO("Tom","Hanks",35)
+
+        ));
+        mvc.perform(MockMvcRequestBuilders.get("/students")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(content()
+                        .json("[{\"firstName\":\"John\", \"lastName\": \"Doe\", \"age\": 20}," +
+                                "{\"firstName\":\"Tom\", \"lastName\": \"Hanks\", \"age\": 35}]"))
+                .andDo(print())
+                .andReturn();
+
+    }
+
+
 }
